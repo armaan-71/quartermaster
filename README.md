@@ -4,6 +4,15 @@
 
 Quartermaster is a full-stack platform that transforms unstructured technician communications into validated, conflict-free database entries. Built with a **Minimalist Notion-meets-Linear** aesthetic, it prioritizes speed, type safety, and real-time operational awareness in a clean, distraction-free environment.
 
+## 🎬 Explore the Platform
+
+
+https://github.com/user-attachments/assets/f74e2be2-dbb6-4ec3-8200-bde5180bb223
+
+
+*(50s walkthrough of the Input → Validate → Resolve loop)*
+
+
 ---
 
 ## 🚀 The Pipeline
