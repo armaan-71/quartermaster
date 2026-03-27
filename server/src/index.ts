@@ -6,6 +6,7 @@ dotenv.config();
 
 import { parseEntities } from './controllers/parseController';
 import { validateEntities } from './controllers/validateController';
+import { createOrder } from './controllers/ordersController';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -16,6 +17,7 @@ app.use(express.json());
 // Routes
 app.post('/api/parse', parseEntities);
 app.post('/api/validate', validateEntities);
+app.post('/api/orders', createOrder);
 
 // Health check
 app.get('/health', (req, res) => {
