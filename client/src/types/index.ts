@@ -1,8 +1,15 @@
+// Shared types mirroring server/src/types/index.ts
+
+export interface Part {
+  name: string;
+  quantity: number;
+}
+
 export interface ExtractedEntities {
   location: string;
   equipment: string;
   action: string;
-  parts: Array<{ name: string; quantity: number }>;
+  parts: Part[];
   time: string; // ISO 8601
 }
 
@@ -20,4 +27,8 @@ export interface ValidationConflict {
 export interface ValidationResult {
   valid: boolean;
   conflicts: ValidationConflict[];
+}
+
+export interface ProposedChange extends ExtractedEntities {
+  validation: ValidationResult;
 }

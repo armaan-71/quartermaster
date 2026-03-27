@@ -18,7 +18,9 @@ export const parseTechnicianText = async (text: string): Promise<ExtractedEntiti
         - parts (array of {name: string, quantity: number})
         - time (ISO 8601 string)
 
-        Current year is 2026. If the technician says "2 PM", assume today's date unless specified.
+        The current date and time is: ${new Date().toISOString()}.
+        If the technician says "today", "tomorrow", "this afternoon", or "2 PM", use this reference time to calculate the EXACT ISO 8601 string.
+        
         If a field is missing, use an empty string or empty array.
         Return ONLY valid JSON.`,
       },
