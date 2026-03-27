@@ -16,23 +16,38 @@ export const validateEntities = async (req: Request, res: Response) => {
         .single();
 
       if (error || !data) {
+        // Try to find a similar part name to suggest as a fix
+        const { data: suggestion } = await supabase
+          .from('inventory')
+          .select('part_name')
+          .ilike('part_name', `%${part.name.split(' ')[0]}%`)
+          .limit(1)
+          .single();
+
         conflicts.push({
           type: 'inventory',
           detail: `Part "${part.name}" not found in inventory.`,
-          suggestedAction: 'Verify part name or add to inventory.',
+          suggestedAction: suggestion ? `Use "${suggestion.part_name}" instead?` : 'Verify part name or add to inventory.',
+          fix: suggestion ? { partName: suggestion.part_name } : undefined,
         });
       } else if (data.quantity < part.quantity) {
         conflicts.push({
           type: 'inventory',
           detail: `Insufficient stock for "${part.name}". Requested: ${part.quantity}, Available: ${data.quantity}.`,
-          suggestedAction: 'Order more parts or reschedule.',
+          suggestedAction: `Use available quantity (${data.quantity})?`,
+          fix: { quantity: data.quantity, partName: data.part_name },
         });
       }
     }
 
     // 2. Check Scheduling (Double Bookings)
-    // Note: In a real app, we'd need the technician_id. For now, we'll check the location/time.
-    const scheduledTime = new Date(entities.time);
+    let scheduledTime = entities.time ? new Date(entities.time) : new Date();
+    
+    // Fallback to now if ISO 8601 parsing fails
+    if (isNaN(scheduledTime.getTime())) {
+      scheduledTime = new Date();
+    }
+    
     const { data: existingJobs, error: scheduleError } = await supabase
       .from('work_orders')
       .select('id, location, scheduled_time')
