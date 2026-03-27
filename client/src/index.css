@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-notion-text antialiased;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .notion-sidebar {
+    @apply bg-notion-sidebar border-r border-notion-border;
+  }
+  
+  .notion-card {
+    @apply bg-white border border-notion-border rounded-lg shadow-sm;
+  }
+  
+  .notion-input {
+    @apply w-full bg-transparent border-none focus:ring-0 text-sm placeholder:text-notion-muted;
+  }
+  
+  .btn-notion {
+    @apply px-4 py-1.5 bg-notion-primary text-white text-sm font-medium rounded-md hover:opacity-90 transition-all active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply px-2 py-1 hover:bg-notion-hover rounded transition-colors text-sm text-notion-text/70;
+  }
+}
+
+:root {
+  color-scheme: light;
+}
