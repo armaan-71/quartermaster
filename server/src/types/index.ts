@@ -10,6 +10,11 @@ export interface ValidationConflict {
   type: 'inventory' | 'schedule';
   detail: string;
   suggestedAction?: string;
+  fix?: {
+    partName?: string;
+    quantity?: number;
+    time?: string;
+  };
 }
 
 export interface ValidationResult {
