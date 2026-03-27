@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, History, Package, Users, Settings, Bell, Search, Plus } from 'lucide-react'
+import { LayoutDashboard, History, Package, Users, Settings, Bell, Search } from 'lucide-react'
 import { cn } from '../lib/utils'
 
 interface LayoutProps {

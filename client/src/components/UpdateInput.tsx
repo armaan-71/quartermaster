@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Plus, Send, Zap } from 'lucide-react'
+import { Plus, Zap } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { cn } from '../lib/utils'
 
 interface UpdateInputProps {
   onUpdate: (text: string) => void
